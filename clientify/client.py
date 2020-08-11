@@ -1,8 +1,10 @@
+import json
+
 import requests
 
 from .contacts import Contacts
-from .orders import Orders
 from .deals import Deals
+from .orders import Orders
 
 
 class ClientifyClient(object):
@@ -45,6 +47,9 @@ class ClientifyClient(object):
         response = requests.request(method, url, headers=headers, **kwargs)
 
         if response.ok:
-            return response.json()
+            try:
+                return response.json()
+            except json.decoder.JSONDecodeError:
+                return None
 
         return response.content

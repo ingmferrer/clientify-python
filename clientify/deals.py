@@ -33,3 +33,7 @@ class Deals(object):
     def delete_deal(self, deal_id):
         endpoint = '/deals/{}/'.format(deal_id)
         return self.client._delete(self.client.BASE_URL + endpoint)
+
+    def close_deal(self, deal_id, data: dict):
+        endpoint = '/deals/{}/close/'.format(deal_id)
+        return self.client._post(self.client.BASE_URL + endpoint, json=data)
