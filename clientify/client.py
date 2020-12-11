@@ -10,12 +10,17 @@ from .orders import Orders
 class ClientifyClient(object):
     BASE_URL = "https://api.clientify.net/v1"
 
-    def __init__(self, token=None):
+    def __init__(self, token=None, requests_hooks=None):
         self.token = token
 
         self.contacts = Contacts(self)
         self.orders = Orders(self)
         self.deals = Deals(self)
+
+        if requests_hooks and not isinstance(requests_hooks, dict):
+            raise Exception(
+                'requests_hooks must be a dict. e.g. {"response": func}. http://docs.python-requests.org/en/master/user/advanced/#event-hooks')
+        self.requests_hooks = requests_hooks
 
     def authenticate(self, username, password):
         payload = {
@@ -43,7 +48,8 @@ class ClientifyClient(object):
         headers = {}
         if self.token:
             headers['Authorization'] = 'Token {}'.format(self.token)
-
+        if self.requests_hooks:
+            kwargs.update({'hooks': self.requests_hooks})
         response = requests.request(method, url, headers=headers, **kwargs)
 
         if response.ok:
