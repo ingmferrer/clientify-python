@@ -2,9 +2,11 @@ import json
 
 import requests
 
+from .calls import Calls
 from .contacts import Contacts
 from .deals import Deals
 from .orders import Orders
+from .tasks import Tasks
 
 
 class ClientifyClient(object):
@@ -16,6 +18,8 @@ class ClientifyClient(object):
         self.contacts = Contacts(self)
         self.orders = Orders(self)
         self.deals = Deals(self)
+        self.tasks = Tasks(self)
+        self.calls = Calls(self)
 
         if requests_hooks and not isinstance(requests_hooks, dict):
             raise Exception(
