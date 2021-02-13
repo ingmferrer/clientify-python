@@ -8,7 +8,7 @@ def read(fname):
 
 
 setup(name='clientify',
-      version='0.0.4',
+      version='0.0.5',
       description='API wrapper for Clientify written in Python',
       long_description=read('README.md'),
       long_description_content_type="text/markdown",
