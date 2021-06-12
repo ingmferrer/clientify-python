@@ -20,7 +20,7 @@ class Contacts(object):
 
     def edit_contact_details(self, contact_id, data: dict):
         endpoint = '/contacts/{}/'.format(contact_id)
-        return self.client._put(self.client.BASE_URL + endpoint, data=data)
+        return self.client._put(self.client.BASE_URL + endpoint, json=data)
 
     def delete_contact(self, contact_id):
         endpoint = '/contacts/{}/'.format(contact_id)
