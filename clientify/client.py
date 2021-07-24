@@ -7,6 +7,7 @@ from .contacts import Contacts
 from .deals import Deals
 from .orders import Orders
 from .tasks import Tasks
+from .users import Users
 
 
 class ClientifyClient(object):
@@ -20,6 +21,7 @@ class ClientifyClient(object):
         self.deals = Deals(self)
         self.tasks = Tasks(self)
         self.calls = Calls(self)
+        self.users = Users(self)
 
         if requests_hooks and not isinstance(requests_hooks, dict):
             raise Exception(
