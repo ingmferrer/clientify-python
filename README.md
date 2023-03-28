@@ -6,7 +6,7 @@ A python wrapper for clientify
 - Requests
 
 ## Installation
-`pip install clientify`
+`pip install git+https://github.com/ingmferrer/clientify-python.git`
 
 ## Usage
 ### Authentication
